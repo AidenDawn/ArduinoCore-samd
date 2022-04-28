@@ -130,6 +130,17 @@ void delayMicroseconds( unsigned int usec )
   // https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html#Volatile
 }
 
+#if defined(USE_TINYUSB)
+
+// run TinyUSB background task when yield()
+void yield(void)
+{
+  TinyUSB_Device_Task();
+  TinyUSB_Device_FlushCDC();
+}
+
+#endif
+
 #ifdef __cplusplus
 }
 #endif

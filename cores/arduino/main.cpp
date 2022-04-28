@@ -24,7 +24,9 @@
 void initVariant() __attribute__((weak));
 void initVariant() { }
 
-extern USBDeviceClass USBDevice;
+#if defined(USBCON)
+  extern USBDeviceClass USBDevice;
+#endif
 
 // Initialize C library
 extern "C" void __libc_init_array(void);
@@ -41,7 +43,10 @@ int main( void )
   initVariant();
 
   delay(1);
-#if defined(USBCON)
+
+#if defined(USE_TINYUSB)
+  TinyUSB_Device_Init(0);
+#elif defined(USBCON)
   USBDevice.init();
   USBDevice.attach();
 #endif
@@ -51,6 +56,7 @@ int main( void )
   for (;;)
   {
     loop();
+    yield(); // USB Background Task
     if (arduino::serialEventRun) arduino::serialEventRun();
   }
 

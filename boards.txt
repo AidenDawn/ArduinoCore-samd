@@ -219,6 +219,12 @@ mkrwifi1010.bootloader.tool.default=openocd
 mkrwifi1010.bootloader.file=mkrwifi1010/samd21_sam_ba_arduino_mkrwifi1010.bin
 #mkrwifi1010.arduinoota.extraflags=-d
 
+mkrwifi1010.menu.usbstack="USB Stack"
+mkrwifi1010.menu.usbstack.arduino=Arduino
+mkrwifi1010.menu.usbstack.arduino.build.flags.usbstack= -DUSBCON
+mkrwifi1010.menu.usbstack.tinyusb=TinyUSB
+mkrwifi1010.menu.usbstack.tinyusb.build.flags.usbstack=-DUSE_TINYUSB
+
 # Arduino NANO 33 IoT
 # --------------------
 nano_33_iot.name=Arduino NANO 33 IoT

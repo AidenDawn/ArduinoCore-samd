@@ -1,0 +1,3 @@
+[submodule "libraries/TinyUSB"]
+	path = libraries/TinyUSB
+	url = git@github.com:adafruit/Adafruit_TinyUSB_Arduino.git

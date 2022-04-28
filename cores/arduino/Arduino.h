@@ -35,7 +35,7 @@ extern "C"{
 
 // Include Atmel headers
 #undef LITTLE_ENDIAN
-#include <samd.h>
+#include <sam.h>
 
 #define clockCyclesPerMicrosecond() ( SystemCoreClock / 1000000L )
 #define clockCyclesToMicroseconds(a) ( ((a) * 1000L) / (SystemCoreClock / 1000L) )
@@ -107,10 +107,15 @@ extern void analogOutputInit( void ) ;
 #endif
 
 // USB Device
-#include "USB/USBDesc.h"
-#include "USB/USBCore.h"
-#include "USB/USBAPI.h"
-#include "USB/USB_host.h"
+#ifdef USE_TINYUSB
+  // Needed for declaring Serial
+  #include "Adafruit_USBD_CDC.h"
+#else
+  #include "USB/USBDesc.h"
+  #include "USB/USBCore.h"
+  #include "USB/USBAPI.h"
+  #include "USB/USB_host.h"
+#endif
 
 // ARM toolchain doesn't provide itoa etc, provide them
 #include "api/itoa.h"
